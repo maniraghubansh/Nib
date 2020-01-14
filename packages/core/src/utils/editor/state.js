@@ -22,8 +22,8 @@ export const buildEditorState = (plugins, content, viewProvider) => {
     {
       schema: buildSchema(plugins),
       plugins: [
-        buildKeymap(plugins, viewProvider),
-        ...getProsemirrorPlugins(plugins)
+        ...getProsemirrorPlugins(plugins),
+        buildKeymap(plugins, viewProvider)
       ]
     },
     editorContent

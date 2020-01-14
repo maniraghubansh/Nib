@@ -35,9 +35,9 @@ const Editor = ({
   };
 
   useEffect(() => {
-    const pluginList = getPluginList(
+    const pluginList = addons.concat(getPluginList(
       `${plugins.options} history common`
-    ).concat(addons);
+    ));
     const state = buildEditorState(pluginList, defaultValue, viewProvider);
     view = new EditorView(editorRef.current, {
       state,

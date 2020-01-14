@@ -1,5 +1,7 @@
 import { Schema } from "prosemirror-model";
 import { marks, nodes as nibNodes } from "nib-schema";
+import mention from '../../plugins/mention/schema'
+import tag from '../../plugins/tag/schema'
 
 export default plugins => {
   const schema = plugins
@@ -25,5 +27,7 @@ export default plugins => {
     newResult[node] = nibNodes[node];
     return newResult;
   }, {});
+  schema.nodes['mention'] = mention;
+  schema.nodes['tag'] = tag;
   return new Schema(schema);
 };

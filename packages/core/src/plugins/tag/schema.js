@@ -7,6 +7,7 @@ export const tag = {
   atom: true,
 
   attrs: {
+    id: "",
     tag: ""
   },
 
@@ -18,6 +19,7 @@ export const tag = {
       "span",
       {
         "data-tag": node.attrs.tag,
+        "data-id": node.attrs.id,
         class: "prosemirror-tag-node"
       },
       "#" + node.attrs.tag
@@ -27,11 +29,13 @@ export const tag = {
   parseDOM: [
     {
       // match tag with following CSS Selector
-      tag: "span[data-tag]",
+      tag: "span[data-tag][data-id]",
 
       getAttrs: dom => {
         var tag = dom.getAttribute("data-tag");
+        var id = dom.getAttribute("data-id")
         return {
+          id: id,
           tag: tag
         };
       }

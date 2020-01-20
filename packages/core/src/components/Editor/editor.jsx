@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { EditorView } from 'prosemirror-view';
 
 import getPluginStyles from '../../utils/editor/styles';
-import { buildEditorState, updateEditorState } from '../../utils/editor/state';
+import { buildEditorState, updateEditorState, clearEditorState } from '../../utils/editor/state';
 import { getPluginList } from '../../utils/editor/plugins';
 import { useConfigContext } from '../../context/config';
 import { usePMStateContext } from '../../context/pm-state';
@@ -14,6 +14,7 @@ const Editor = ({
   defaultValue,
   autoFocus,
   spellCheck,
+  clear,
   addons,
   onChange,
   licenseKey,
@@ -33,6 +34,12 @@ const Editor = ({
       addon.viewUpdateCallback(view);
     });
   };
+
+  // useEffect(() => {
+  //   if (clear) {
+  //     clearEditorState(view, view.state)
+  //   }
+  // }, [clear])
 
   useEffect(() => {
     const pluginList = addons.concat(getPluginList(
@@ -94,6 +101,7 @@ Editor.propTypes = {
   defaultValue: PropTypes.object,
   onChange: PropTypes.func,
   spellCheck: PropTypes.bool,
+  clear: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   addons: PropTypes.array,
   licenseKey: PropTypes.string,
@@ -104,6 +112,7 @@ Editor.defaultProps = {
   defaultValue: undefined,
   onChange: () => {},
   spellCheck: false,
+  clear: false,
   addons: [],
   licenseKey: undefined,
 };

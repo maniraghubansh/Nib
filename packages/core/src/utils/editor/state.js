@@ -30,6 +30,18 @@ export const buildEditorState = (plugins, content, viewProvider) => {
   );
 };
 
+export const clearEditorState = (view, editorState) => {
+  const editorContent = defaultContent;
+  let state = EditorState.fromJSON(
+    {
+      schema: editorState.schema,
+      plugins: editorState.plugins
+    },
+    editorContent
+  );
+  updateEditorState(view, state);
+};
+
 export const updateEditorState = (view, state) => {
   view.updateState(state);
   return view;

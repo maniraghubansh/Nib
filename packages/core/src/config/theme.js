@@ -24,10 +24,10 @@ export default {
     }
   },
   fontSize: {
-    extraLarge: "20px",
-    large: "16px",
-    medium: "14px",
-    small: "12px"
+    extraLarge: "1.2rem",
+    large: "1rem",
+    medium: "0.8rem",
+    small: "0.7rem"
   },
   fontWeight: {
     medium: "normal"

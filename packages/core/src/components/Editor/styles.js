@@ -62,7 +62,7 @@ export const StyledEditor = styled(
     {
       border: "none",
       // overflow: "scroll",
-      padding: 4,
+      // padding: 4,
       position: "relative",
       textAlign: "left"
     },

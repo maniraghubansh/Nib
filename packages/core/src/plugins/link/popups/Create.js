@@ -147,8 +147,8 @@ export default {
 const Wrapper = styled.div(
   {
     alignItems: "center",
-    display: "flex",
-    padding: 4
+    display: "flex"
+    // padding: 4
   },
   ({ theme: { constants } }) => ({
     borderRadius: constants.borderRadius,

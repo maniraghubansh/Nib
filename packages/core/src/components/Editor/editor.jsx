@@ -25,7 +25,7 @@ const Editor = ({
     dispatcher,
   } = useConfigContext();
   const pmstate = usePMStateContext();
-  let [view] = useState();
+  let [view, setView] = useState();
   const viewProvider = () => view;
 
   const updateViewListeners = () => {
@@ -35,11 +35,12 @@ const Editor = ({
     });
   };
 
-  // useEffect(() => {
-  //   if (clear) {
-  //     clearEditorState(view, view.state)
-  //   }
-  // }, [clear])
+  useEffect(() => {
+    if (clear) {
+      let view = viewProvider()
+      clearEditorState(view, view.state)
+    }
+  }, [clear])
 
   useEffect(() => {
     const pluginList = addons.concat(getPluginList(
@@ -82,6 +83,7 @@ const Editor = ({
       if (addon.updateLicenseInfo)
         addon.updateLicenseInfo(editorRef.current, licenseKey);
     });
+    setView(view);
     return () => view.destroy();
   }, []);
 

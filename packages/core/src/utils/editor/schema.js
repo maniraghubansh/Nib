@@ -3,6 +3,17 @@ import { marks, nodes as nibNodes } from "nib-schema";
 import mention from '../../plugins/mention/schema'
 import tag from '../../plugins/tag/schema'
 
+const body = {
+  content: "block+",
+  group: "block",
+  defining: true,
+  parseDOM: [{ tag: 'section' },
+  ],
+  toDOM() {
+    return ['section', 0]
+  }
+};
+
 export default plugins => {
   const schema = plugins
     .map(p => p && p.schema)
@@ -27,7 +38,10 @@ export default plugins => {
     newResult[node] = nibNodes[node];
     return newResult;
   }, {});
+  console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
+  schema.nodes['body'] = body;
   schema.nodes['mention'] = mention;
   schema.nodes['tag'] = tag;
+  console.log(`Schema = ${JSON.stringify(schema)}`)
   return new Schema(schema);
 };

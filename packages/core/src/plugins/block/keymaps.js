@@ -1,3 +1,4 @@
+import { Selection, TextSelection } from "prosemirror-state";
 import { setBlockType } from "prosemirror-commands";
 
 const changeBlockType = (blockTypeName, attrs) => (state, dispatch) => {
@@ -19,7 +20,21 @@ export default () => ({
   "Mod-Alt-5": (state, dispatch) =>
     changeBlockType("heading", { level: 5 })(state, dispatch),
   "Mod-Alt-6": (state, dispatch) =>
-    changeBlockType("heading", { level: 6 })(state, dispatch)
+    changeBlockType("heading", { level: 6 })(state, dispatch),
+  "Enter": (state, dispatch) => {
+    // console.log(`cu`)
+    if ((state.doc.content.firstChild && state.doc.content.firstChild.type.name == 'heading') && 
+    (state.selection.$anchor.parent === state.doc.content.firstChild)) {
+      const textSelection = new TextSelection(
+        Selection.atEnd(state.doc).$head,
+        Selection.atEnd(state.doc).$head
+      );
+      dispatch(state.tr.setSelection(textSelection));
+      return true;
+    } else {
+      return false;
+    }
+  }
 });
 
 export const KeymapInfo = {

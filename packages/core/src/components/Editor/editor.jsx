@@ -21,7 +21,7 @@ const Editor = ({
 }) => {
   const editorRef = useRef(null);
   const {
-    config: { plugins },
+    config: { heading, plugins },
     dispatcher,
   } = useConfigContext();
   const pmstate = usePMStateContext();
@@ -46,7 +46,7 @@ const Editor = ({
     const pluginList = addons.concat(getPluginList(
       `${plugins.options} history common`
     ));
-    const state = buildEditorState(pluginList, defaultValue, viewProvider);
+    const state = buildEditorState(heading, pluginList, defaultValue, viewProvider);
     view = new EditorView(editorRef.current, {
       state,
       dispatchTransaction: tr => {

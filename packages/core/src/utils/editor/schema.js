@@ -4,7 +4,7 @@ import mention from '../../plugins/mention/schema'
 import tag from '../../plugins/tag/schema'
 
 const body = {
-  content: "block+",
+  content: "paragraph block*",
   group: "block",
   defining: true,
   parseDOM: [{ tag: 'section' },
@@ -14,7 +14,17 @@ const body = {
   }
 };
 
-export default plugins => {
+const docWithHeading = {
+  content: "heading body",
+  group: "block"
+};
+
+const docWithoutHeading = {
+  content: "body",
+  group: "block"
+};
+
+export default (heading, plugins) => {
   const schema = plugins
     .map(p => p && p.schema)
     .reduce(
@@ -38,10 +48,11 @@ export default plugins => {
     newResult[node] = nibNodes[node];
     return newResult;
   }, {});
-  console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
+  // console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
   schema.nodes['body'] = body;
   schema.nodes['mention'] = mention;
   schema.nodes['tag'] = tag;
-  console.log(`Schema = ${JSON.stringify(schema)}`)
+  schema.nodes['doc'] = heading ? docWithHeading : docWithoutHeading;
+  // console.log(`Schema = ${JSON.stringify(schema)}`)
   return new Schema(schema);
 };

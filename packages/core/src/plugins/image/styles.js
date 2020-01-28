@@ -1,3 +1,20 @@
+// export default ({ constants }) => `
+// .nib-image-outer-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   &:focus {
+//     outline: none;
+//   }
+// }
+// .nib-image-wrapper {
+//   position: relative;
+//   display: inline-block;
+//   margin: 0 auto;
+//   > img {
+//     width: auto;
+//   }
+// }
+
 export default ({ constants }) => `
   .nib-image-outer-wrapper {
     display: flex;
@@ -12,7 +29,9 @@ export default ({ constants }) => `
     display: inline-block;
     margin: 0 auto;
     > img {
-      width: auto;
+      max-width: 60vw;
+          height: auto;
+
     }
   }
 

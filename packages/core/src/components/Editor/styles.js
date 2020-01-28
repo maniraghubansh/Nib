@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 
 import BlockPlugin from "../../plugins/block";
 
+const heightVar = "18rem";
+
 const prosemirrorStyles = `
   & .ProseMirror {
     &:focus {
@@ -64,7 +66,8 @@ export const StyledEditor = styled(
       // overflow: "scroll",
       // padding: 4,
       position: "relative",
-      textAlign: "left"
+      textAlign: "left",
+      minHeight: `${heightVar}`
     },
     ({ theme: { constants, editor } }) => ({
       backgroundColor: constants.color.background.primary,

@@ -67,11 +67,12 @@ export const StyledEditor = styled(
       // padding: 4,
       position: "relative",
       textAlign: "left",
-      minHeight: `${heightVar}`
+      // minHeight: `${heightVar}`
     },
-    ({ theme: { constants, editor } }) => ({
+    ({ theme: { constants, editor }, minHeight }) => ({
       backgroundColor: constants.color.background.primary,
       color: constants.color.text.primary,
+      minHeight: `${minHeight}`,
 
       fontSize: constants.fontSize.medium,
 

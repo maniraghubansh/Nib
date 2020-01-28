@@ -21,7 +21,7 @@ const Editor = ({
 }) => {
   const editorRef = useRef(null);
   const {
-    config: { heading, plugins },
+    config: { heading, plugins, minHeight, editable },
     dispatcher,
   } = useConfigContext();
   const pmstate = usePMStateContext();
@@ -67,6 +67,9 @@ const Editor = ({
         });
         if (onChange) onChange(serializableState);
       },
+      editable: state => {
+        return editable;
+      }
     });
     if (autoFocus) {
       view.focus();
@@ -74,7 +77,7 @@ const Editor = ({
     addons.forEach(addon => {
       if (addon.createStateFromDoc)
         addon.createStateFromDoc(doc => {
-          const editorState = buildEditorState(pluginList, doc);
+          const editorState = buildEditorState(heading, pluginList, doc);
           view.updateState(editorState);
         });
     });
@@ -93,6 +96,7 @@ const Editor = ({
       pluginStyles={getPluginStyles(plugins.options, addons)}
       ref={editorRef}
       spellCheck={spellCheck}
+      minHeight={minHeight}
     />
   );
 };

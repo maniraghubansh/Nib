@@ -38,7 +38,7 @@ const Editor = ({
   useEffect(() => {
     if (clear) {
       let view = viewProvider()
-      clearEditorState(view, view.state)
+      clearEditorState(view, view.state, defaultValue)
     }
   }, [clear])
 

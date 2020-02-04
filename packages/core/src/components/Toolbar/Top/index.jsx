@@ -51,7 +51,7 @@ const Wrapper = styled.div(
 
     borderLeft: "none",
     borderRight: "none",
-    borderTop: "none",
+    borderTop: "1px solid #E8E8E8",
 
     userSelect: "none",
     zIndex: "0"

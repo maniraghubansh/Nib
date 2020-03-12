@@ -14,17 +14,30 @@ const body = {
   }
 };
 
-const docWithHeading = {
+const userNode = {
+  content: "inline|mention",
+  group: "block",
+  toDOM() {
+    return ["p", 0];
+  }
+}
+
+const taskDoc = {
+  content: "heading paragraph heading body",
+  group: "block"
+}
+
+const discussionDoc = {
   content: "heading body",
   group: "block"
 };
 
-const docWithoutHeading = {
+const commentDoc = {
   content: "body",
   group: "block"
 };
 
-export default (heading, plugins) => {
+export default (type, plugins) => {
   const schema = plugins
     .map(p => p && p.schema)
     .reduce(
@@ -52,7 +65,16 @@ export default (heading, plugins) => {
   schema.nodes['body'] = body;
   schema.nodes['mention'] = mention;
   schema.nodes['tag'] = tag;
-  schema.nodes['doc'] = heading ? docWithHeading : docWithoutHeading;
+  schema.nodes['userNode'] = userNode;
+  let docNode = null;
+  if(type == 'discussion') {
+    docNode = discussionDoc;
+  } else if (type == 'comment') {
+    docNode = commentDoc;
+  } else if (type == 'task') {
+    docNode = taskDoc;
+  }
+  schema.nodes['doc'] = docNode;
   // console.log(`Schema = ${JSON.stringify(schema)}`)
   return new Schema(schema);
 };

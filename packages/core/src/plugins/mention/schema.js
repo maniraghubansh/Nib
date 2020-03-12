@@ -24,7 +24,7 @@ const mention = {
         "data-mention-email": node.attrs.email,
         class: "prosemirror-mention-node"
       },
-      "@" + node.attrs.name || node.attrs.email
+      node.attrs.name || node.attrs.email
     ];
   },
 

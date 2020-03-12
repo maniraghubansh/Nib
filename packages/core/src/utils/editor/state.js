@@ -16,11 +16,11 @@ const defaultContent = {
   }
 };
 
-export const buildEditorState = (heading, plugins, content, viewProvider) => {
+export const buildEditorState = (type, plugins, content, viewProvider) => {
   const editorContent = content || defaultContent;
   return EditorState.fromJSON(
     {
-      schema: buildSchema(heading, plugins),
+      schema: buildSchema(type, plugins),
       plugins: [
         ...getProsemirrorPlugins(plugins),
         buildKeymap(plugins, viewProvider)

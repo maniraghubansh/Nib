@@ -41,6 +41,17 @@ export const clearEditorState = (view, editorState, defaultValue) => {
   updateEditorState(view, state);
 };
 
+export const createNewEditorState = (view, editorState, newValue) => {
+  let state = EditorState.fromJSON(
+    {
+      schema: editorState.schema,
+      plugins: editorState.plugins
+    },
+    newValue
+  );
+  updateEditorState(view, state);
+};
+
 export const updateEditorState = (view, state) => {
   view.updateState(state);
   return view;

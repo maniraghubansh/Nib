@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { EditorView } from 'prosemirror-view';
 
 import getPluginStyles from '../../utils/editor/styles';
-import { buildEditorState, updateEditorState, clearEditorState } from '../../utils/editor/state';
+import { buildEditorState, updateEditorState, createNewEditorState, clearEditorState } from '../../utils/editor/state';
 import { getPluginList } from '../../utils/editor/plugins';
 import { useConfigContext } from '../../context/config';
 import { usePMStateContext } from '../../context/pm-state';
@@ -34,6 +34,14 @@ const Editor = ({
       addon.viewUpdateCallback(view);
     });
   };
+
+  useEffect(() => {
+    let view = viewProvider()
+    if (!view) {
+      return;
+    }
+    createNewEditorState(view, view.state, defaultValue)
+  }, [defaultValue])
 
   useEffect(() => {
     if (clear) {

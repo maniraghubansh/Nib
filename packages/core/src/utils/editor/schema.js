@@ -23,7 +23,7 @@ const userNode = {
 }
 
 const taskDoc = {
-  content: "heading paragraph heading body",
+  content: "heading body heading paragraph",
   group: "block"
 }
 

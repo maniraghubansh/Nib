@@ -41,6 +41,7 @@ const Editor = ({
       return;
     }
     createNewEditorState(view, view.state, defaultValue)
+    view.focus()
   }, [defaultValue])
 
   useEffect(() => {
@@ -73,7 +74,7 @@ const Editor = ({
           if (getSerializableState)
             serializableState[name] = getSerializableState();
         });
-        if (onChange) onChange(serializableState);
+        if (onChange) onChange(view.state);
       },
       editable: state => {
         return editable;

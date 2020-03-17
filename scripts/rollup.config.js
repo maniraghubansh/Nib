@@ -56,7 +56,7 @@ const getConfig = packageName => {
     },
     external,
     plugins: [
-      uglify(),
+      // uglify(),
       bundleSize(),
       nodeResolve({
         browser: true

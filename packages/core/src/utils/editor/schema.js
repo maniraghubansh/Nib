@@ -15,7 +15,7 @@ const body = {
 };
 
 const userNode = {
-  content: "inline|mention",
+  content: "mention* text*",
   group: "block",
   toDOM() {
     return ["p", 0];
@@ -23,7 +23,7 @@ const userNode = {
 }
 
 const taskDoc = {
-  content: "heading body heading paragraph",
+  content: "heading body heading userNode",
   group: "block"
 }
 

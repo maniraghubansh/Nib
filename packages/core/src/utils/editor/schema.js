@@ -16,6 +16,7 @@ const body = {
 
 const userNode = {
   content: "mention* text*",
+  attrs: {error: {default: false}},
   group: "block",
   toDOM() {
     return ["p", 0];

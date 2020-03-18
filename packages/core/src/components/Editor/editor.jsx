@@ -11,6 +11,7 @@ import { usePMStateContext } from '../../context/pm-state';
 import { StyledEditor } from './styles';
 
 const Editor = ({
+  viewRef,
   defaultValue,
   autoFocus,
   spellCheck,
@@ -80,6 +81,7 @@ const Editor = ({
         return editable;
       }
     });
+    viewRef.current = view;
     if (autoFocus) {
       view.focus();
     }
@@ -111,6 +113,7 @@ const Editor = ({
 };
 
 Editor.propTypes = {
+  viewRef: PropTypes.object,
   autoFocus: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   defaultValue: PropTypes.object,

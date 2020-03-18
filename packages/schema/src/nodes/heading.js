@@ -1,5 +1,5 @@
 const heading = {
-  attrs: { level: { default: 1 } },
+  attrs: { level: { default: 1 }, error: {default: false} },
   content: "inline*",
   group: "block",
   defining: true,

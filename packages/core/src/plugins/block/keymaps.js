@@ -22,16 +22,16 @@ export default () => ({
   "Mod-Alt-6": (state, dispatch) =>
     changeBlockType("heading", { level: 6 })(state, dispatch),
   "Enter": (state, dispatch) => {
-        console.log(`inside Enter`)
-    let currentNodeIndex = state.selection.$head.index(0)
-    
-    if ( currentNodeIndex === 3) {
+    if (state.doc.firstChild.type.name !== "task") return false;
+    let currentNodeIndex = state.selection.$head.index(1)
+
+    if (currentNodeIndex === 3) {
       // onTaskNavigation("Cmd-Down");
       return false;
     } else {
       let newPos = 0;
       for (let i = 0; i <= currentNodeIndex + 1; i++) {
-        newPos = state.doc.content.child(i).nodeSize + newPos
+        newPos = state.doc.firstChild.content.child(i).nodeSize + newPos
       }
       if (currentNodeIndex == 0) {
         newPos = newPos - 2
@@ -51,8 +51,8 @@ export default () => ({
     }
     return true;
     // console.log(`cu`)
-    if ((state.doc.content.firstChild && state.doc.content.firstChild.type.name == 'heading') && 
-    (state.selection.$anchor.parent === state.doc.content.firstChild)) {
+    if ((state.doc.content.firstChild && state.doc.content.firstChild.type.name == 'heading') &&
+      (state.selection.$anchor.parent === state.doc.content.firstChild)) {
       const textSelection = new TextSelection(
         Selection.atEnd(state.doc).$head,
         Selection.atEnd(state.doc).$head

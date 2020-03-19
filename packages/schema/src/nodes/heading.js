@@ -3,6 +3,7 @@ const heading = {
   content: "inline*",
   group: "block",
   defining: true,
+  allowGapCursor: true,
   parseDOM: [
     { tag: "h1", attrs: { level: 1 } },
     { tag: "h2", attrs: { level: 2 } },

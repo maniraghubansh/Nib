@@ -42,7 +42,7 @@ const userNode = {
 }
 
 const task = {
-  content: "title description estimate userNode",
+  content: "title description userNode estimate",
   attrs: {root: {default: false}, parent: {default: false}},
   group: "block",
   defining: true,

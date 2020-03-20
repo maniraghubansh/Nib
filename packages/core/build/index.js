@@ -39045,7 +39045,10 @@
       }
 
       createNewEditorState(view, view.state, defaultValue);
-      view.focus();
+
+      if (defaultValue && defaultValue.focus) {
+        view.focus();
+      }
     }, [defaultValue]);
     React.useEffect(function () {
       if (clear) {

@@ -42,7 +42,9 @@ const Editor = ({
       return;
     }
     createNewEditorState(view, view.state, defaultValue)
-    view.focus()
+    if (defaultValue && defaultValue.focus) {
+      view.focus()
+    }
   }, [defaultValue])
 
   useEffect(() => {

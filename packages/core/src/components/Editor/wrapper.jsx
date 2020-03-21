@@ -15,8 +15,9 @@ const Wrapper = props => {
     config: { toolbar }
   } = useConfigContext();
 
-  const topToolbarPresent = toolbar.options.indexOf("top") >= 0;
-  const { addons } = props;
+  const { addons, showToolbar } = props;
+
+  const topToolbarPresent = showToolbar && toolbar.options.indexOf("top") >= 0;
   return (
     <StyledWrapper ref={editorWrapper}>
       <InnerEditor {...props} />

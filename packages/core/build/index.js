@@ -39008,7 +39008,8 @@
         clear = _ref.clear,
         addons = _ref.addons,
         onChange = _ref.onChange,
-        licenseKey = _ref.licenseKey;
+        licenseKey = _ref.licenseKey,
+        showToolbar = _ref.showToolbar;
     var editorRef = React.useRef(null);
 
     var _useConfigContext = useConfigContext(),
@@ -39104,6 +39105,7 @@
     }, []);
     return React__default.createElement(StyledEditor // eslint-disable-next-line react/prop-types
     , {
+      showToolbar: showToolbar,
       pluginStyles: getPluginStyles(plugins.options, addons),
       ref: editorRef,
       spellCheck: spellCheck,
@@ -39121,7 +39123,8 @@
     clear: propTypes.bool,
     // eslint-disable-next-line react/forbid-prop-types
     addons: propTypes.array,
-    licenseKey: propTypes.string
+    licenseKey: propTypes.string,
+    showToolbar: propTypes.bool
   };
   Editor.defaultProps = {
     autoFocus: false,
@@ -39130,7 +39133,8 @@
     spellCheck: false,
     clear: false,
     addons: [],
-    licenseKey: undefined
+    licenseKey: undefined,
+    showToolbar: true
   };
 
   var Wrapper$a = function Wrapper(props) {
@@ -39139,8 +39143,9 @@
     var _useConfigContext = useConfigContext(),
         toolbar = _useConfigContext.config.toolbar;
 
-    var topToolbarPresent = toolbar.options.indexOf("top") >= 0;
-    var addons = props.addons;
+    var addons = props.addons,
+        showToolbar = props.showToolbar;
+    var topToolbarPresent = showToolbar && toolbar.options.indexOf("top") >= 0;
     return React__default.createElement(StyledWrapper, {
       ref: editorWrapper
     }, React__default.createElement(Editor, props), topToolbarPresent && React__default.createElement(Top, {

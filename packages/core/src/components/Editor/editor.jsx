@@ -19,6 +19,7 @@ const Editor = ({
   addons,
   onChange,
   licenseKey,
+  showToolbar
 }) => {
   const editorRef = useRef(null);
   const {
@@ -42,7 +43,9 @@ const Editor = ({
       return;
     }
     createNewEditorState(view, view.state, defaultValue)
-    view.focus()
+    if (defaultValue && defaultValue.focus) {
+      view.focus()
+    }
   }, [defaultValue])
 
   useEffect(() => {
@@ -104,6 +107,7 @@ const Editor = ({
   return (
     <StyledEditor
       // eslint-disable-next-line react/prop-types
+      showToolbar={showToolbar}
       pluginStyles={getPluginStyles(plugins.options, addons)}
       ref={editorRef}
       spellCheck={spellCheck}
@@ -123,6 +127,7 @@ Editor.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   addons: PropTypes.array,
   licenseKey: PropTypes.string,
+  showToolbar: PropTypes.bool,
 };
 
 Editor.defaultProps = {
@@ -133,6 +138,7 @@ Editor.defaultProps = {
   clear: false,
   addons: [],
   licenseKey: undefined,
+  showToolbar: true,
 };
 
 export default Editor;

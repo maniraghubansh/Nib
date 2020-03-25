@@ -1,7 +1,7 @@
 export default () => `
   p {
     display: block;
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
@@ -9,7 +9,7 @@ export default () => `
   }
   h1 {
     display: block;
-    font-size: 2em;
+    font-size: 3em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
@@ -18,7 +18,7 @@ export default () => `
   }
   h2 {
     display: block;
-    font-size: 1.5em;
+    font-size: 2.5em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
@@ -27,7 +27,7 @@ export default () => `
   }
   h3 {
     display: block;
-    font-size: 1.17em;
+    font-size: 2em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
@@ -36,7 +36,7 @@ export default () => `
   }
   h4 {
     display: block;
-    font-size: 1em;
+    font-size: 1.5em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
@@ -45,20 +45,20 @@ export default () => `
   }
   h5 {
     display: block;
-    font-size: 0.83em;
+    font-size: 1.25em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-weight: bold;
+    font-weight: 500;
   }
   h6 {
     display: block;
-    font-size: 0.67em;
+    font-size: 1em;
     margin-block-start: 0.25rem;
     margin-block-end: 0.25rem;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-weight: bold;
+    font-weight: 500;
   }
 `;

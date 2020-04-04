@@ -51,6 +51,9 @@ const Editor = ({
   useEffect(() => {
     if (clear) {
       let view = viewProvider()
+      if (!view) {
+        return;
+      }
       clearEditorState(view, view.state, defaultValue)
     }
   }, [clear])
@@ -84,7 +87,7 @@ const Editor = ({
         return editable;
       }
     });
-    viewRef.current = view;
+    if (viewRef) viewRef.current = view;
     if (autoFocus) {
       view.focus();
     }

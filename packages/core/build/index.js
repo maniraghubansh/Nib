@@ -39055,6 +39055,10 @@
       if (clear) {
         var _view = viewProvider();
 
+        if (!_view) {
+          return;
+        }
+
         clearEditorState(_view, _view.state, defaultValue);
       }
     }, [clear]);
@@ -39082,7 +39086,7 @@
           return _editable;
         }
       });
-      viewRef.current = view;
+      if (viewRef) viewRef.current = view;
 
       if (autoFocus) {
         view.focus();

@@ -38302,7 +38302,9 @@
     return keymap(addedMap);
   }); // future: in plugins add priority to keymaps
 
-  var codeDOM = ["code", 0];
+  var codeDOM = ["code", {
+    "class": 'prosemirror-code-node'
+  }, 0];
   var code$1 = {
     parseDOM: [{
       tag: "code"

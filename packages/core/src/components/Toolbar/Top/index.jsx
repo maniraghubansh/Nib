@@ -51,10 +51,10 @@ const Wrapper = styled.div(
 
     borderLeft: "none",
     borderRight: "none",
-    borderTop: "none",
+    borderTop: "1px solid #E8E8E8",
 
     userSelect: "none",
-    zIndex: "1"
+    zIndex: "0"
   },
   ({ theme: { constants, toolbar } }) => ({
     backgroundColor: constants.color.background.primary,

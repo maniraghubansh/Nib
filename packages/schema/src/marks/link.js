@@ -14,7 +14,14 @@ const link = {
     }
   ],
   toDOM(node) {
-    return ["a", node.attrs, 0];
+    return [
+      "a",
+      {
+        ...node.attrs,
+        class: 'prosemirror-link-node',
+      },
+      0
+    ];
   }
 };
 

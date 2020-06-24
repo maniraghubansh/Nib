@@ -1,5 +1,5 @@
 const doc = {
-  content: "block+",
+  content: "heading body",
   group: "block"
 };
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { EditorView } from 'prosemirror-view';
 
 import getPluginStyles from '../../utils/editor/styles';
-import { buildEditorState, updateEditorState } from '../../utils/editor/state';
+import { buildEditorState, updateEditorState, createNewEditorState, clearEditorState } from '../../utils/editor/state';
 import { getPluginList } from '../../utils/editor/plugins';
 import { useConfigContext } from '../../context/config';
 import { usePMStateContext } from '../../context/pm-state';
@@ -11,20 +11,23 @@ import { usePMStateContext } from '../../context/pm-state';
 import { StyledEditor } from './styles';
 
 const Editor = ({
+  viewRef,
   defaultValue,
   autoFocus,
   spellCheck,
+  clear,
   addons,
   onChange,
   licenseKey,
+  showToolbar
 }) => {
   const editorRef = useRef(null);
   const {
-    config: { plugins },
+    config: { type, plugins, minHeight, editable },
     dispatcher,
   } = useConfigContext();
   const pmstate = usePMStateContext();
-  let [view] = useState();
+  let [view, setView] = useState();
   const viewProvider = () => view;
 
   const updateViewListeners = () => {
@@ -35,10 +38,31 @@ const Editor = ({
   };
 
   useEffect(() => {
-    const pluginList = getPluginList(
+    let view = viewProvider()
+    if (!view) {
+      return;
+    }
+    createNewEditorState(view, view.state, defaultValue)
+    if (defaultValue && defaultValue.focus) {
+      view.focus()
+    }
+  }, [defaultValue])
+
+  useEffect(() => {
+    if (clear) {
+      let view = viewProvider()
+      if (!view) {
+        return;
+      }
+      clearEditorState(view, view.state, defaultValue)
+    }
+  }, [clear])
+
+  useEffect(() => {
+    const pluginList = addons.concat(getPluginList(
       `${plugins.options} history common`
-    ).concat(addons);
-    const state = buildEditorState(pluginList, defaultValue, viewProvider);
+    ));
+    const state = buildEditorState(type, pluginList, defaultValue, viewProvider);
     view = new EditorView(editorRef.current, {
       state,
       dispatchTransaction: tr => {
@@ -57,16 +81,20 @@ const Editor = ({
           if (getSerializableState)
             serializableState[name] = getSerializableState();
         });
-        if (onChange) onChange(serializableState);
+        if (onChange) onChange(view.state);
       },
+      editable: state => {
+        return editable;
+      }
     });
+    if (viewRef) viewRef.current = view;
     if (autoFocus) {
       view.focus();
     }
     addons.forEach(addon => {
       if (addon.createStateFromDoc)
         addon.createStateFromDoc(doc => {
-          const editorState = buildEditorState(pluginList, doc);
+          const editorState = buildEditorState(heading, pluginList, doc);
           view.updateState(editorState);
         });
     });
@@ -75,28 +103,34 @@ const Editor = ({
       if (addon.updateLicenseInfo)
         addon.updateLicenseInfo(editorRef.current, licenseKey);
     });
+    setView(view);
     return () => view.destroy();
   }, []);
 
   return (
     <StyledEditor
       // eslint-disable-next-line react/prop-types
+      showToolbar={showToolbar}
       pluginStyles={getPluginStyles(plugins.options, addons)}
       ref={editorRef}
       spellCheck={spellCheck}
+      minHeight={minHeight}
     />
   );
 };
 
 Editor.propTypes = {
+  viewRef: PropTypes.object,
   autoFocus: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   defaultValue: PropTypes.object,
   onChange: PropTypes.func,
   spellCheck: PropTypes.bool,
+  clear: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   addons: PropTypes.array,
   licenseKey: PropTypes.string,
+  showToolbar: PropTypes.bool,
 };
 
 Editor.defaultProps = {
@@ -104,8 +138,10 @@ Editor.defaultProps = {
   defaultValue: undefined,
   onChange: () => {},
   spellCheck: false,
+  clear: false,
   addons: [],
   licenseKey: undefined,
+  showToolbar: true,
 };
 
 export default Editor;

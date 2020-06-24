@@ -118,7 +118,10 @@ const StyledKey = styled.span({
   whiteSpace: "nowrap"
 });
 
-const OptionWrapper = styled.div({ height: "100%", overflow: "scroll" });
+const OptionWrapper = styled.div({
+  height: "100%"
+  // overflow: "scroll"
+});
 
 const ColumnWrapper = styled.div({
   display: "flex",

@@ -1,46 +1,46 @@
 export default {
   color: {
-    border: { primary: '#e0e0e0', secondary: '#757575' },
+    border: { primary: "#ffffff", secondary: "#ffffff" },
 
     highlight: {
-      primary: '#2962ff',
-      secondary: '#2962ff1a',
+      primary: "#2962ff",
+      secondary: "#2962ff1a"
     },
 
-    text: { primary: '#212121', secondary: '#424242' },
+    text: { primary: "#212121", secondary: "#424242" },
 
-    backgroundHighlight: { primary: '#fff9c4', secondary: '#ffeb3b' },
+    backgroundHighlight: { primary: "#fff9c4", secondary: "#ffeb3b" },
 
-    textHighlight: { primary: '#212121' },
+    textHighlight: { primary: "#212121" },
 
-    background: { primary: '#FFFFFF', secondary: '#efefef' },
+    background: { primary: "#FFFFFF", secondary: "#efefef" },
 
-    opaque: '#00000080',
+    opaque: "#00000080",
 
-    blurMarker: 'rgb(220,220,220)',
+    blurMarker: "rgb(220,220,220)",
 
     error: {
-      primary: '#ff1744',
-    },
+      primary: "#ff1744"
+    }
   },
   fontSize: {
-    extraLarge: '20px',
-    large: '16px',
-    medium: '14px',
-    small: '12px',
+    extraLarge: "1.2rem",
+    large: "1rem",
+    medium: "0.8rem",
+    small: "0.7rem"
   },
   fontWeight: {
-    medium: 'normal',
+    medium: "normal"
   },
   borderRadius: {
-    small: '2px',
-    large: '4px',
+    small: "2px",
+    large: "4px"
   },
   border: {
-    primary: '1px solid #e0e0e0',
+    primary: "1px solid #ffffff"
   },
   boxShadow: {
     primary: `#cdcdcdbf 0px 2px 4px -2px, #cdcdcdbf 0px 0px 1px`,
-    secondary: 'rgb(235, 236, 240) 0px 1px 0px',
-  },
+    secondary: "rgb(235, 236, 240) 0px 1px 0px"
+  }
 };

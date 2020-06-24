@@ -61,14 +61,15 @@ export const StyledEditor = styled(
   styled.div(
     {
       border: "none",
-      overflow: "scroll",
-      padding: 4,
+      // overflow: "scroll",
+      // padding: 4,
       position: "relative",
       textAlign: "left"
     },
-    ({ theme: { constants, editor } }) => ({
+    ({ theme: { constants, editor }, minHeight }) => ({
       backgroundColor: constants.color.background.primary,
       color: constants.color.text.primary,
+      minHeight: `${minHeight}`,
 
       fontSize: constants.fontSize.medium,
 

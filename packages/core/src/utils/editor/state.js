@@ -16,18 +16,40 @@ const defaultContent = {
   }
 };
 
-export const buildEditorState = (plugins, content, viewProvider) => {
+export const buildEditorState = (type, plugins, content, viewProvider) => {
   const editorContent = content || defaultContent;
   return EditorState.fromJSON(
     {
-      schema: buildSchema(plugins),
+      schema: buildSchema(type, plugins),
       plugins: [
-        buildKeymap(plugins, viewProvider),
-        ...getProsemirrorPlugins(plugins)
+        ...getProsemirrorPlugins(plugins),
+        buildKeymap(plugins, viewProvider)
       ]
     },
     editorContent
   );
+};
+
+export const clearEditorState = (view, editorState, defaultValue) => {
+  let state = EditorState.fromJSON(
+    {
+      schema: editorState.schema,
+      plugins: editorState.plugins
+    },
+    defaultValue
+  );
+  updateEditorState(view, state);
+};
+
+export const createNewEditorState = (view, editorState, newValue) => {
+  let state = EditorState.fromJSON(
+    {
+      schema: editorState.schema,
+      plugins: editorState.plugins
+    },
+    newValue
+  );
+  updateEditorState(view, state);
 };
 
 export const updateEditorState = (view, state) => {

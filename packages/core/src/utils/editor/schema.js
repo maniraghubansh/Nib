@@ -16,8 +16,6 @@ const description = {
   group: "block",
   defining: true,
   allowGapCursor: true,
-  parseDOM: [{ tag: 'section' },
-  ],
   toDOM() {
     return ['section', 0]
   }
@@ -47,7 +45,6 @@ const task = {
   group: "block",
   defining: true,
   allowGapCursor: true,
-  parseDOM: [{ tag: 'div' }],
   toDOM() {
     return ['div', 0]
   }
@@ -58,7 +55,6 @@ const body = {
   group: "block",
   defining: true,
   allowGapCursor: true,
-  parseDOM: [{ tag: 'section' }],
   toDOM() {
     return ['section', 0]
   }

@@ -38779,9 +38779,6 @@
     group: "block",
     defining: true,
     allowGapCursor: true,
-    parseDOM: [{
-      tag: 'section'
-    }],
     toDOM: function toDOM() {
       return ['section', 0];
     }
@@ -38823,9 +38820,6 @@
     group: "block",
     defining: true,
     allowGapCursor: true,
-    parseDOM: [{
-      tag: 'div'
-    }],
     toDOM: function toDOM() {
       return ['div', 0];
     }
@@ -38835,9 +38829,6 @@
     group: "block",
     defining: true,
     allowGapCursor: true,
-    parseDOM: [{
-      tag: 'section'
-    }],
     toDOM: function toDOM() {
       return ['section', 0];
     }

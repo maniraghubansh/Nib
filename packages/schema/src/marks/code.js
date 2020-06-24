@@ -1,4 +1,4 @@
-const codeDOM = ["code", 0];
+const codeDOM = ["code",{class: 'prosemirror-code-node'}, 0];
 const code = {
   parseDOM: [{ tag: "code" }],
   toDOM() {

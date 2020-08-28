@@ -38877,7 +38877,12 @@
       var newResult = result;
       newResult[node] = nibNodes[node];
       return newResult;
-    }, {}); // console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
+    }, {});
+    plugins.filter(function (p) {
+      return p.node;
+    }).forEach(function (p) {
+      schema.nodes[p.node.name] = p.node.spec;
+    }); // console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
 
     schema.nodes['title'] = title;
     schema.nodes['description'] = description;

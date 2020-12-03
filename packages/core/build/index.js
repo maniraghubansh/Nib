@@ -38882,6 +38882,11 @@
       return p.node;
     }).forEach(function (p) {
       schema.nodes[p.node.name] = p.node.spec;
+    });
+    plugins.filter(function (p) {
+      return p.mark;
+    }).forEach(function (p) {
+      schema.marks[p.mark.name] = p.mark.spec;
     }); // console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
 
     schema.nodes['title'] = title;

@@ -104,7 +104,13 @@ export default (type, plugins) => {
     .filter(p => p.node)
     .forEach(p => {
     schema.nodes[p.node.name] = p.node.spec
-  })
+    })
+  
+  plugins
+    .filter(p => p.mark)
+    .forEach(p => {
+      schema.marks[p.mark.name] = p.mark.spec
+    })
   // console.log(`NibNodes = ${JSON.stringify(nibNodes)}`)
   schema.nodes['title'] = title;
   schema.nodes['description'] = description;
